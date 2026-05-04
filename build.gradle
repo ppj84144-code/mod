@@ -10,6 +10,7 @@ base { archivesName = project.archives_base_name }
 
 repositories {
     maven { url "https://maven.fabricmc.net/" }
+    mavenCentral()
 }
 
 dependencies {
@@ -17,12 +18,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    // WebSocket para comunicação em tempo real
     implementation 'org.java-websocket:Java-WebSocket:1.5.4'
-    include 'org.java-websocket:Java-WebSocket:1.5.4'
-
-    // Gson para JSON
     implementation 'com.google.code.gson:gson:2.10.1'
 }
 
@@ -45,5 +41,7 @@ java {
 }
 
 jar {
-    from("LICENSE") { rename { "${it}_${project.base.archivesName.get()}" } }
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
 }
